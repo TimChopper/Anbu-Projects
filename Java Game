@@ -1,0 +1,116 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    Scanner ah = new Scanner(System.in);
+    Random random = new Random();
+
+    public static void printLine() {
+        System.out.println("---------------------------------");
+    }
+
+    public static void printDash() {
+        System.out.println("_");
+    }
+
+    public void hp(int hpLevel) {
+        int a = hpLevel;
+
+        while (a == 2 || a == 1) {
+            printDash();
+            System.out.println("Attack(0)  Talk(1)  Combact(2)  ");
+            printDash();
+            int letsBegin = ah.nextInt();
+
+            if (letsBegin == 0 && a == 2) {
+                a = a - 1;
+                printLine();
+                System.out.println("BOSS: " + getRandomAttackPhrase());
+                printLine();
+            } else if (letsBegin == 0 && a == 1) {
+                printLine();
+                System.out.println("BOSS: " + getRandomDefeatPhrase());
+                printLine();
+                break;
+            } else if (letsBegin == 1) {
+                printDash();
+                System.out.println("DoInsult(0)  DoEsteem(1)");
+                printDash();
+                int I_E_ = ah.nextInt();
+                switch (I_E_) {
+                    case 0:
+                        System.out.println("YOU: " + getRandomInsultPhrase());
+                        break;
+                    case 1:
+                        System.out.println("YOU: " + getRandomEsteemPhrase());
+                        break;
+                }
+            } else if (letsBegin == 2) {
+                printDash();
+                System.out.println("Flee(0)  Conflict(1)");
+                printDash();
+                int F_C_ = ah.nextInt();
+                switch (F_C_) {
+                    case 0:
+                        printLine();
+                        System.out.println("Boss: " + getRandomFleePhrase());
+                        printLine();
+                        break;
+                    case 1:
+                        printLine();
+                        System.out.println("Boss: " + getRandomConflictPhrase());
+                        printLine();
+                        break;
+                }
+            }
+        }
+    }
+
+    private String getRandomAttackPhrase() {
+        String[] phrases = {"Ah ouch....Oops I didn't expect this from you, bruh!!!!",
+                            "Feel the wrath of my mighty sword!"};
+        return phrases[random.nextInt(phrases.length)];
+    }
+
+    private String getRandomDefeatPhrase() {
+        String[] phrases = {"You bastard!! You have defeated me. You won!",
+                            "Your victory is acknowledged. Farewell, warrior!"};
+        return phrases[random.nextInt(phrases.length)];
+    }
+
+    private String getRandomInsultPhrase() {
+        String[] phrases = {"No problem if you don't like me. Not everyone has good taste lol",
+                            "Is that the best insult you can come up with? Try harder!"};
+        return phrases[random.nextInt(phrases.length)];
+    }
+
+    private String getRandomEsteemPhrase() {
+        String[] phrases = {"Unleash your infernal might, oh formidable devil! Your dark prowess is unmatched!",
+                            "Hail, malevolent one! Your diabolical strength and cunning are truly awe-inspiring, a force to be reckoned with in the realms of darkness"};
+        return phrases[random.nextInt(phrases.length)];
+    }
+
+    private String getRandomFleePhrase() {
+        String[] phrases = {"I will not let you escape. You can't go away HA HA HA HA",
+                            "Running away won't save you, fool!"};
+        return phrases[random.nextInt(phrases.length)];
+    }
+
+    private String getRandomConflictPhrase() {
+        String[] phrases = {"Let's see who emerges victorious – you or me!",
+                            "Prepare for battle! This will be a fight to the death!"};
+        return phrases[random.nextInt(phrases.length)];
+    }
+
+    public static void main(String args[]) {
+        Main mainObject = new Main();
+
+        System.out.println("HEY YOUU! Who are you man ?????");
+        String name = mainObject.ah.nextLine();
+
+        System.out.println("HA HA I didn't ask your name lol, when people ask me stupid questions,\n" +
+                "it's my legal obligation to give a sarcastic remark");
+
+        mainObject.hp(2);
+    }
+}
